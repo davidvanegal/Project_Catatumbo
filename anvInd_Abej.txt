@@ -1,0 +1,12 @@
+Analysis of Deviance Table
+
+Model: gaussian, link: identity
+
+Response: Abundancia
+
+Terms added sequentially (first to last)
+
+
+          Df Deviance Resid. Df Resid. Dev Pr(>Chi)
+NULL                         51     59.215         
+Cobertura  2   1.5972        49     57.618   0.5071

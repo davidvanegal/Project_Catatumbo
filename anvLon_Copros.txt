@@ -1,0 +1,14 @@
+Analysis of Deviance Table
+
+Model: gaussian, link: identity
+
+Response: Longitud
+
+Terms added sequentially (first to last)
+
+
+          Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+NULL                         51    1232.57              
+Cobertura  2   491.96        49     740.61 8.554e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

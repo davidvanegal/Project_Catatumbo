@@ -1,0 +1,15 @@
+Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: glm(formula = Especies ~ Cobertura, family = gaussian(), data = o)
+
+Linear Hypotheses:
+             Estimate Std. Error z value Pr(>|z|)    
+PA - BQ == 0  -2.8450     0.6195  -4.593 1.14e-05 ***
+SA - BQ == 0   0.0390     0.5877   0.066    0.998    
+SA - PA == 0   2.8840     0.5877   4.907  < 1e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+(Adjusted p values reported -- single-step method)
