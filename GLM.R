@@ -8,7 +8,8 @@ o <- read.csv("GLM_Mariposas.csv", header = T, sep = ";")
 o <- read.csv("GLM_Abejas.csv", header = T, sep = ";")
 
 # Factor sitios
-o$Cobertura <- as.factor(o$Cobertura)
+o$Cobertura <- factor(o$Cobertura,
+                      levels = c("BQ", "PA", "SA"), ordered = TRUE)
 
 ## Análisis previo
 par(mfrow=c(2,4))

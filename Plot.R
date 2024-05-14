@@ -41,7 +41,7 @@ b2 <- ggplot(o, aes(x = Cobertura, y = Especies))+
         theme(axis.title.y = element_text(size = 18))+
         theme(panel.border = element_blank(), panel.grid.major = element_blank(),
               panel.grid.minor = element_blank(), 
-              axis.line = element_line(colour = "black", size = 1))+
+              axis.line = element_line(colour = "black", linewidth = 1))+
         theme(panel.background = element_blank())+ 
         theme(legend.position = "none")+ 
         annotate("text", label = "Aa", size = 6, x = 1, y = 1.7)+
