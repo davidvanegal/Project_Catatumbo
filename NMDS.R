@@ -8,7 +8,9 @@ library(ggforce) # Accelerating 'ggplot2' CRAN v0.4.2
 ## Análisis bajo parámetros de abundancia
 
 # Carga de base de datos
-mx <- read.csv("NMDS.csv", header = T, sep = ";")
+mx <- read.csv("NMDS_Copros.csv", header = T, sep = ";")
+mx <- read.csv("NMDS_Marip.csv", header = T, sep = ";")
+mx <- read.csv("NMDS_Abej.csv", header = T, sep = ";")
 
 View(mx)
 dim(mx)
@@ -41,7 +43,7 @@ nmdsdata <- data.frame(nmds.scores$sites)
 nmdsdata$sites <- c(1:13)
 nmdsdata$sites[1:4] <- c("BQ")
 nmdsdata$sites[5:8] <- c("PA")
-nmdsdata$sites[9:13] <- c("SA")
+nmdsdata$sites[9:13] <- c("SAF")
 
 # Plot
 ggplot(nmdsdata, aes(x = NMDS1, y = NMDS2, color = sites))+
