@@ -12,13 +12,11 @@ mx <- read.csv("NMDS_Copros.csv", header = T, sep = ";")
 mx <- read.csv("NMDS_Marip.csv", header = T, sep = ";")
 mx <- read.csv("NMDS_Abej.csv", header = T, sep = ";")
 
-View(mx)
-dim(mx)
+dimmx <- dim(mx)
 
 # Manipulación de datos
-mx2 <- mx[1:13,]
-ymx <- mx2[,2:25]
-View(ymx)
+mx2 <- mx[1:dimmx[1],]
+ymx <- mx2[,2:dimmx[2]]
 
 # NMDS
 nmds <- metaMDS(ymx, k = 2, distance = "bray")
@@ -40,10 +38,11 @@ spp
 
 # Determinar sitios
 nmdsdata <- data.frame(nmds.scores$sites)
-nmdsdata$sites <- c(1:13)
+nmdsdata$sites <- c(1:12)
 nmdsdata$sites[1:4] <- c("BQ")
 nmdsdata$sites[5:8] <- c("PA")
-nmdsdata$sites[9:13] <- c("SAF")
+nmdsdata$sites[9:12] <- c("SAF")
+
 
 # Plot
 ggplot(nmdsdata, aes(x = NMDS1, y = NMDS2, color = sites))+
@@ -64,3 +63,4 @@ ggplot(nmdsdata, aes(x = NMDS1, y = NMDS2, color = sites))+
 
 stressplot(nmds)
 
+View(nmdsdata)

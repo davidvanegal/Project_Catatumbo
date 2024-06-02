@@ -24,9 +24,9 @@ a2 <- ggplot(o, aes(x = Cobertura, y = Abundancia))+
               axis.line = element_line(colour = "black", size = 1))+
         theme(panel.background = element_blank())+ 
         theme(legend.position = "none")+ 
-        annotate("text", label = "A", size = 6, x = 1, y = 3.5)+
-        annotate("text", label = "A", size = 6, x = 2, y = 5)+
-        annotate("text", label = "A", size = 6, x = 3, y = 4.5)
+        annotate("text", label = "A", size = 6, x = 1, y = 3)+
+        annotate("text", label = "A", size = 6, x = 2, y = 4.5)+
+        annotate("text", label = "A", size = 6, x = 3, y = 4)
 a2
 
 # Plot (B) Especies -----------------------------------------------------------
@@ -44,9 +44,9 @@ b2 <- ggplot(o, aes(x = Cobertura, y = Especies))+
               axis.line = element_line(colour = "black", linewidth = 1))+
         theme(panel.background = element_blank())+ 
         theme(legend.position = "none")+ 
-        annotate("text", label = "A", size = 6, x = 1, y = 1.7)+
-        annotate("text", label = "Aa", size = 6, x = 2, y = 1.85)+
-        annotate("text", label = "Ab", size = 6, x = 3, y = 2.5)
+        annotate("text", label = "A", size = 6, x = 1, y = 2)+
+        annotate("text", label = "A", size = 6, x = 2, y = 2)+
+        annotate("text", label = "B", size = 6, x = 3, y = 2.5)
 b2
 
 # Plot (C) Longitud --------------------------------------------------------
