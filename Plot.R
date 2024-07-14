@@ -5,16 +5,24 @@ library(ggrepel) # Automatically Position Non-Overlapping Text Labels with 'ggpl
 o <- read.csv("GLM_Copros.csv", header = T, sep = ";")
 o <- read.csv("GLM_Mariposas.csv", header = T, sep = ";")
 o <- read.csv("GLM_Abejas.csv", header = T, sep = ";")
+o <- read.csv("GLM_Total.csv", header = T, sep = ";")
+
 
 o$Cobertura <- factor(o$Cobertura,
                       levels = c("BQ", "PA", "SA"), ordered = TRUE)
 
+o$SP <- factor(o$SP,
+                      levels = c("Bees", "Butterflies", "Beetles"), 
+               ordered = TRUE)
+
 # Plot (A) Abundancia ---------------------------------------------------------
-a2 <- ggplot(o, aes(x = Cobertura, y = Abundancia))+
-        geom_boxplot(width = 0.6)+
+a2 <- ggplot(o, aes(x = Cobertura, y = Abundancia, color = SP))+
+        geom_boxplot(width = 0.6, outlier.shape = NA, 
+                     position=position_dodge(width = 0.9))+
         theme(axis.title.x = element_blank())+
         theme(axis.text.x = element_blank())+
-        scale_y_continuous("Abundancia")+
+        scale_y_continuous("Abundance")+
+        geom_jitter(position = position_jitter(width = .1, height = 0))+
         theme(axis.text.x = element_text(size = 18))+
         theme(axis.title.x = element_text(size = 18))+
         theme(axis.text.y = element_text(size = 18))+
@@ -22,8 +30,8 @@ a2 <- ggplot(o, aes(x = Cobertura, y = Abundancia))+
         theme(panel.border = element_blank(), panel.grid.major = element_blank(),
               panel.grid.minor = element_blank(), 
               axis.line = element_line(colour = "black", size = 1))+
-        theme(panel.background = element_blank())+ 
-        theme(legend.position = "none")+ 
+        theme(panel.background = element_blank())
+        theme(legend.position = "none")
         annotate("text", label = "A", size = 6, x = 1, y = 3)+
         annotate("text", label = "A", size = 6, x = 2, y = 4.5)+
         annotate("text", label = "A", size = 6, x = 3, y = 4)
