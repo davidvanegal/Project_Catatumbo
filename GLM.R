@@ -3,67 +3,140 @@ library(lme4) # Linear Mixed-Effects Models using 'Eigen' and S4 CRAN v1.1-35.2
 library(lmtest) # Testing Linear Regression Models CRAN v0.9-40
 
 # Read data
-o <- read.csv("GLM_Copros.csv", header = T, sep = ";")
-o <- read.csv("GLM_Mariposas.csv", header = T, sep = ";")
-o <- read.csv("GLM_Abejas.csv", header = T, sep = ";")
+GLMDB <- read.csv("GLM_DungBeetles.csv", header = T, sep = ";")
+GLMBE <- read.csv("GLM_Bees.csv", header = T, sep = ";")
+GLMBU <- read.csv("GLM_Butterflies.csv", header = T, sep = ";")
 
-# Factor vegetation cover
-o$VegCover <- factor(o$VegCover,
-                     levels = c("SF", "CAF", "PA"))
+# Dung beetles -----
+GLMDB$VegCover <- ordered(GLMDB$VegCover, levels = c("Secondary forest", 
+                                               "Cacao agroforestry", 
+                                               "Pastures"))
 
 ## Analysis
 par(mfrow=c(2,4))
-print(summary(o))
-plot(o)
+print(summary(GLMDB))
+plot(GLMDB)
 
-# Abundance --------------------------------------------------------------
-Ind <- glm(Abundance ~ VegCover, family = gaussian(), data = o)
-print(summary(Ind))
+## Abundance 
+IndDB <- glm(Abundance ~ VegCover, family = gaussian(), data = GLMDB)
+print(summary(IndDB))
 par(mfcol = c(2, 2))
-plot(Ind)
+plot(IndDB)
 
-anvInd <- anova(Ind, test = "Chisq")
-print(anvInd)
-summary(anvInd)
+anvIndDB <- anova(IndDB, test = "Chisq")
+print(anvIndDB)
+summary(anvIndDB)
 
-tukInd <- glht(Ind, linfct = mcp(VegCover = "Tukey"))
-summary(tukInd)
+tukIndDB <- glht(IndDB, linfct = mcp(VegCover = "Tukey"))
+summary(tukIndDB)
 
-# Species ----------------------------------------------------------------
-Esp <- glm(Species ~ VegCover, family = gaussian(), data = o)
-print(summary(Esp))
+## Species 
+EspDB <- glm(Species ~ VegCover, family = gaussian(), data = GLMDB)
+print(summary(EspDB))
 par(mfcol = c(2, 2))
-plot(Esp)
+plot(EspDB)
 
-anvEsp <- anova(Esp, test = "Chisq")
-print(anvEsp)
-summary(anvEsp)
+anvEspDB <- anova(EspDB, test = "Chisq")
+print(anvEspDB)
+summary(anvEspDB)
 
-tukEsp <- glht(Esp, linfct = mcp(VegCover = "Tukey"))
-summary(tukEsp)
+tukEspDB <- glht(EspDB, linfct = mcp(VegCover = "Tukey"))
+summary(tukEspDB)
 
-# Longitude ----------------------------------------------------------------
-Lon <- glm(Longitude ~ VegCover, family = gaussian(), data = o)
-print(summary(Lon))
+# Longitude 
+LonDB <- glm(Longitude ~ VegCover, family = gaussian(), data = GLMDB)
+print(summary(LonDB))
 par(mfcol = c(2, 2))
-plot(Lon)
+plot(LonDB)
 
-anvLon <- anova(Lon, test = "Chisq")
-print(anvLon)
-summary(anvLon)
+anvLonDB <- anova(LonDB, test = "Chisq")
+print(anvLonDB)
+summary(anvLonDB)
 
-tukLon <- glht(Lon, linfct = mcp(VegCover = "Tukey"))
-summary(tukLon)
+tukLonDB <- glht(LonDB, linfct = mcp(VegCover = "Tukey"))
+summary(tukLonDB)
 
-# Biomass ---------------------------------------------------------------
-Biom <- glm(Biomass ~ VegCover, family = gaussian(), data = o)
-print(summary(Biom))
+# Biomass 
+BiomDB <- glm(Biomass ~ VegCover, family = gaussian(), data = GLMDB)
+print(summary(BiomDB))
 par(mfcol = c(2, 2))
-plot(Biom)
+plot(BiomDB)
 
-anvBiom <- anova(Biom, test = "Chisq")
-print(anvBiom)
-summary(anvBiom)
+anvBiomDB <- anova(BiomDB, test = "Chisq")
+print(anvBiomDB)
+summary(anvBiomDB)
 
-tukBiom <- glht(Biom, linfct = mcp(VegCover = "Tukey"))
-summary(tukBiom)
+tukBiomDB <- glht(BiomDB, linfct = mcp(VegCover = "Tukey"))
+summary(tukBiomDB)
+
+# Bees -----
+GLMBE$VegCover <- ordered(GLMBE$VegCover, levels = c("Secondary forest", 
+                                                     "Cacao agroforestry", 
+                                                     "Pastures"))
+
+## Analysis
+par(mfrow=c(2,4))
+print(summary(GLMBE))
+plot(GLMBE)
+
+## Abundance 
+IndBE <- glm(Abundance ~ VegCover, family = gaussian(), data = GLMBE)
+print(summary(IndBE))
+par(mfcol = c(2, 2))
+plot(IndBE)
+
+anvIndBE <- anova(IndBE, test = "Chisq")
+print(anvIndBE)
+summary(anvIndBE)
+
+tukIndBE <- glht(IndBE, linfct = mcp(VegCover = "Tukey"))
+summary(tukIndBE)
+
+## Species 
+EspBE <- glm(Species ~ VegCover, family = gaussian(), data = GLMBE)
+print(summary(EspBE))
+par(mfcol = c(2, 2))
+plot(EspBE)
+
+anvEspBE <- anova(EspBE, test = "Chisq")
+print(anvEspBE)
+summary(anvEspBE)
+
+tukEspBE <- glht(EspBE, linfct = mcp(VegCover = "Tukey"))
+summary(tukEspBE)
+
+# Butterflies -----
+GLMBU$VegCover <- ordered(GLMBU$VegCover, levels = c("Secondary forest", 
+                                                     "Cacao agroforestry", 
+                                                     "Pastures"))
+
+## Analysis
+par(mfrow=c(2,4))
+print(summary(GLMBU))
+plot(GLMBU)
+
+## Abundance 
+IndBU <- glm(Abundance ~ VegCover, family = gaussian(), data = GLMBU)
+print(summary(IndBU))
+par(mfcol = c(2, 2))
+plot(IndBU)
+
+anvIndBU <- anova(IndBU, test = "Chisq")
+print(anvIndBU)
+summary(anvIndBU)
+
+tukIndBU <- glht(IndBU, linfct = mcp(VegCover = "Tukey"))
+summary(tukIndBU)
+
+## Species 
+EspBU <- glm(Species ~ VegCover, family = gaussian(), data = GLMBU)
+print(summary(EspBU))
+par(mfcol = c(2, 2))
+plot(EspBU)
+
+anvEspBU <- anova(EspBU, test = "Chisq")
+print(anvEspBU)
+summary(anvEspBU)
+
+tukEspBU <- glht(EspBU, linfct = mcp(VegCover = "Tukey"))
+summary(tukEspBU)
