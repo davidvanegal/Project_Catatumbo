@@ -8,11 +8,9 @@ GLMBE <- read.csv("GLM_Bees.csv", header = T, sep = ";")
 GLMBU <- read.csv("GLM_Butterflies.csv", header = T, sep = ";")
 
 # Dung beetles -----
-GLMDB$VegCover <- ordered(GLMDB$VegCover, levels = c("Secondary forest", 
-                                               "Cacao agroforestry", 
-                                               "Pastures"))
+GLMDB$VegCover <- factor(GLMDB$VegCover)
 
-## Analysis
+## Analysis## Analfactorize()ysis
 par(mfrow=c(2,4))
 print(summary(GLMDB))
 plot(GLMDB)
