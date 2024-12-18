@@ -1,6 +1,7 @@
 library(multcomp) # Simultaneous Inference in General Parametric Models CRAN v1.4-25
 library(lme4) # Linear Mixed-Effects Models using 'Eigen' and S4 CRAN v1.1-35.2
 library(lmtest) # Testing Linear Regression Models CRAN v0.9-40
+library(car)
 
 # Read data
 GLMDB <- read.csv("GLM_DungBeetles.csv", header = T, sep = ";")
@@ -21,6 +22,9 @@ print(summary(IndDB))
 par(mfcol = c(2, 2))
 plot(IndDB)
 
+shapiro.test(IndDB$residuals)
+leveneTest(log(Abundance+1) ~ VegCover, data = GLMDB)
+
 anvIndDB <- anova(IndDB, test = "Chisq")
 print(anvIndDB)
 summary(anvIndDB)
@@ -29,10 +33,13 @@ tukIndDB <- glht(IndDB, linfct = mcp(VegCover = "Tukey"))
 summary(tukIndDB)
 
 ## Species 
-EspDB <- glm(Species ~ VegCover, family = gaussian(), data = GLMDB)
+EspDB <- glm(log(Species+1) ~ VegCover, family = gaussian(), data = GLMDB)
 print(summary(EspDB))
 par(mfcol = c(2, 2))
 plot(EspDB)
+
+shapiro.test(EspDB$residuals)
+leveneTest(log(Species+1) ~ VegCover, data = GLMDB)
 
 anvEspDB <- anova(EspDB, test = "Chisq")
 print(anvEspDB)
@@ -42,10 +49,13 @@ tukEspDB <- glht(EspDB, linfct = mcp(VegCover = "Tukey"))
 summary(tukEspDB)
 
 # Longitude 
-LonDB <- glm(Longitude ~ VegCover, family = gaussian(), data = GLMDB)
+LonDB <- glm(log(Longitude+1) ~ VegCover, family = gaussian(), data = GLMDB)
 print(summary(LonDB))
 par(mfcol = c(2, 2))
 plot(LonDB)
+
+shapiro.test(LonDB$residuals)
+leveneTest(log(Longitude+1) ~ VegCover, data = GLMDB)
 
 anvLonDB <- anova(LonDB, test = "Chisq")
 print(anvLonDB)
@@ -55,10 +65,14 @@ tukLonDB <- glht(LonDB, linfct = mcp(VegCover = "Tukey"))
 summary(tukLonDB)
 
 # Biomass 
-BiomDB <- glm(Biomass ~ VegCover, family = gaussian(), data = GLMDB)
+BiomDB <- glm(log(Biomass+1) ~ VegCover, 
+              family = gaussian(), data = GLMDB)
 print(summary(BiomDB))
 par(mfcol = c(2, 2))
 plot(BiomDB)
+
+shapiro.test(BiomDB$residuals)
+leveneTest(log(Biomass+1) ~ VegCover, data = GLMDB)
 
 anvBiomDB <- anova(BiomDB, test = "Chisq")
 print(anvBiomDB)
@@ -119,7 +133,7 @@ print(summary(IndBU))
 par(mfcol = c(2, 2))
 plot(IndBU)
 
-anvIndBU <- anova(IndBU, test = "Chisq")
+anvIndBU <- anova(RichDB, test = "Chisq")
 print(anvIndBU)
 summary(anvIndBU)
 

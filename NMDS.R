@@ -20,12 +20,23 @@ imgDB <- readPNG("DungBeetle.png", native = TRUE)
 imgBE <- readPNG("Bee.png", native = TRUE) 
 imgBU <- readPNG("Butterflies.png", native = TRUE) 
 
+DB <- BU
 # Dung Beetles ----
 dimDB <- dim(DB)
+dimDB
+DB3 <- DB[,2:23]
+
+# ANOSIM ----
+# Fire regime
+analisis <- anosim(DB3, DB$VegCover, distance = "bray", permutations = 9999)
+analisis
 
 # Manipulación de datos
 DB2 <- DB[1:dimDB[1],]
 yDB <- DB2[,2:dimDB[2]]
+
+
+
 
 # NMDS
 nmdsDB <- metaMDS(yDB, k = 2, distance = "bray")
